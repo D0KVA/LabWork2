@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PractikaPW1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="ID_Game" />
+    </Key>
+    <Property Name="ID_Game" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameGame" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Zhanre_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Zhanres" Relationship="Self.FK__Games__Zhanre_ID__3B75D760" FromRole="Games" ToRole="Zhanres" />
+  </EntityType>
+  <EntityType Name="Zhanres">
+    <Key>
+      <PropertyRef Name="ID_Zhanre" />
+    </Key>
+    <Property Name="ID_Zhanre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameZhanre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DescriptionZhanre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Games" Relationship="Self.FK__Games__Zhanre_ID__3B75D760" FromRole="Zhanres" ToRole="Games" />
+  </EntityType>
+  <Association Name="FK__Games__Zhanre_ID__3B75D760">
+    <End Role="Zhanres" Type="Self.Zhanres" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zhanres">
+        <PropertyRef Name="ID_Zhanre" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="Zhanre_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PractikaPW1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Games" EntityType="Self.Games" />
+    <EntitySet Name="Zhanres" EntityType="Self.Zhanres" />
+    <AssociationSet Name="FK__Games__Zhanre_ID__3B75D760" Association="Self.FK__Games__Zhanre_ID__3B75D760">
+      <End Role="Zhanres" EntitySet="Zhanres" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

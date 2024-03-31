@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище PractikaPW1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="ID_Game" />
+    </Key>
+    <Property Name="ID_Game" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameGame" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Zhanre_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zhanres">
+    <Key>
+      <PropertyRef Name="ID_Zhanre" />
+    </Key>
+    <Property Name="ID_Zhanre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameZhanre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DescriptionZhanre" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK__Games__Zhanre_ID__3B75D760">
+    <End Role="Zhanres" Type="Self.Zhanres" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zhanres">
+        <PropertyRef Name="ID_Zhanre" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="Zhanre_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PractikaPW1ModelContainer">
+    <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zhanres" EntityType="Self.Zhanres" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Games__Zhanre_ID__3B75D760" Association="Self.FK__Games__Zhanre_ID__3B75D760">
+      <End Role="Zhanres" EntitySet="Zhanres" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

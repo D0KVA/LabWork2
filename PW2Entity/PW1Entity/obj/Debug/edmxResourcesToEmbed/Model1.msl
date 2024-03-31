@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище PractikaPW1ModelContainer" CdmEntityContainer="PractikaPW1Entities">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="PractikaPW1Model.Games">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="ID_Game" ColumnName="ID_Game" />
+          <ScalarProperty Name="NameGame" ColumnName="NameGame" />
+          <ScalarProperty Name="Zhanre_ID" ColumnName="Zhanre_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zhanres">
+      <EntityTypeMapping TypeName="PractikaPW1Model.Zhanres">
+        <MappingFragment StoreEntitySet="Zhanres">
+          <ScalarProperty Name="ID_Zhanre" ColumnName="ID_Zhanre" />
+          <ScalarProperty Name="NameZhanre" ColumnName="NameZhanre" />
+          <ScalarProperty Name="DescriptionZhanre" ColumnName="DescriptionZhanre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

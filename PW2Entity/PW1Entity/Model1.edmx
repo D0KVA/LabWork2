@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PractikaPW1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="ID_Game" />
+          </Key>
+          <Property Name="ID_Game" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameGame" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Zhanre_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zhanres">
+          <Key>
+            <PropertyRef Name="ID_Zhanre" />
+          </Key>
+          <Property Name="ID_Zhanre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameZhanre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescriptionZhanre" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__Games__Zhanre_ID__3B75D760">
+          <End Role="Zhanres" Type="Self.Zhanres" Multiplicity="1" />
+          <End Role="Games" Type="Self.Games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zhanres">
+              <PropertyRef Name="ID_Zhanre" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="Zhanre_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PractikaPW1ModelContainer">
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zhanres" EntityType="Self.Zhanres" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Games__Zhanre_ID__3B75D760" Association="Self.FK__Games__Zhanre_ID__3B75D760">
+            <End Role="Zhanres" EntitySet="Zhanres" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PractikaPW1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="ID_Game" />
+          </Key>
+          <Property Name="ID_Game" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameGame" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zhanre_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Zhanres" Relationship="Self.FK__Games__Zhanre_ID__3B75D760" FromRole="Games" ToRole="Zhanres" />
+        </EntityType>
+        <EntityType Name="Zhanres">
+          <Key>
+            <PropertyRef Name="ID_Zhanre" />
+          </Key>
+          <Property Name="ID_Zhanre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameZhanre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DescriptionZhanre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Games" Relationship="Self.FK__Games__Zhanre_ID__3B75D760" FromRole="Zhanres" ToRole="Games" />
+        </EntityType>
+        <Association Name="FK__Games__Zhanre_ID__3B75D760">
+          <End Role="Zhanres" Type="Self.Zhanres" Multiplicity="1" />
+          <End Role="Games" Type="Self.Games" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zhanres">
+              <PropertyRef Name="ID_Zhanre" />
+            </Principal>
+            <Dependent Role="Games">
+              <PropertyRef Name="Zhanre_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PractikaPW1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="Self.Games" />
+          <EntitySet Name="Zhanres" EntityType="Self.Zhanres" />
+          <AssociationSet Name="FK__Games__Zhanre_ID__3B75D760" Association="Self.FK__Games__Zhanre_ID__3B75D760">
+            <End Role="Zhanres" EntitySet="Zhanres" />
+            <End Role="Games" EntitySet="Games" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PractikaPW1ModelContainer" CdmEntityContainer="PractikaPW1Entities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="PractikaPW1Model.Games">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="ID_Game" ColumnName="ID_Game" />
+                <ScalarProperty Name="NameGame" ColumnName="NameGame" />
+                <ScalarProperty Name="Zhanre_ID" ColumnName="Zhanre_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zhanres">
+            <EntityTypeMapping TypeName="PractikaPW1Model.Zhanres">
+              <MappingFragment StoreEntitySet="Zhanres">
+                <ScalarProperty Name="ID_Zhanre" ColumnName="ID_Zhanre" />
+                <ScalarProperty Name="NameZhanre" ColumnName="NameZhanre" />
+                <ScalarProperty Name="DescriptionZhanre" ColumnName="DescriptionZhanre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
